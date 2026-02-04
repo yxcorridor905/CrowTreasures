@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
@@ -8,5 +8,69 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- 背景音乐播放器 -->
+    <audio id="background-audio" autoplay loop>
+      <source src="/background.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- 静音按钮 -->
+    <button id="mute-btn" onclick="toggleMute()">静音</button>
+
+    <!-- 音量控制 -->
+    <input
+      id="volume-control"
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+      value="1"
+      oninput="setVolume(this.value)"
+    />
+
+    <style>
+      /* 音频播放器按钮样式 */
+      #mute-btn {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        padding: 10px;
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        border-radius: 5px;
+      }
+
+      /* 音量控制样式 */
+      #volume-control {
+        position: absolute;
+        bottom: 20px;
+        left: 100px;
+        width: 100px;
+      }
+    </style>
+
+    <script>
+      // 获取音频元素
+      const audioElement = document.getElementById("background-audio");
+
+      // 静音按钮控制
+      function toggleMute() {
+        // 判断当前音频是否已经静音
+        if (audioElement.muted) {
+          audioElement.muted = false;
+          document.getElementById("mute-btn").innerText = "静音"; // 按钮文本切换
+        } else {
+          audioElement.muted = true;
+          document.getElementById("mute-btn").innerText = "取消静音"; // 按钮文本切换
+        }
+      }
+
+      // 音量控制
+      function setVolume(value) {
+        audioElement.volume = value; // 设置音频的音量
+      }
+    </script>
   </body>
 </html>
