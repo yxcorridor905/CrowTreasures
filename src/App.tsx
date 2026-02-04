@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Feather, Box, Loader2, RefreshCw, X, ScrollText } from 'lucide-react';
 import { Treasure } from './types';

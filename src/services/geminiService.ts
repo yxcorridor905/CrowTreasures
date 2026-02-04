@@ -53,9 +53,7 @@ export const generateTreasure = async (
   emotion?: string
 ): Promise<Omit<Treasure, "id" | "createdAt">> => {
   try {
-    const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY as string | undefined;
-    if (!apiKey) throw new Error("Missing VITE_DEEPSEEK_API_KEY in .env.local");
-
+    
     const prompt = emotion
       ? `User Thought: "${thought}"\nUser Emotion: "${emotion}"`
       : `User Thought: "${thought}"`;
