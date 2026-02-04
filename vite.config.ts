@@ -1,0 +1,19 @@
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => {
+  // Load env file based on `mode` in the current working directory.
+  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
+  const env = loadEnv(mode, '.', '');
+  return {
+    // base: './' allows the app to be served from any subdirectory, 
+    // which is helpful for GitHub Pages or local preview.
+    base: './',
+    plugins: [react()],
+    define: {
+      // Polyfill process.env.API_KEY for the browser environment
+      'process.env.API_KEY': JSON.stringify(env.API_KEY),
+    },
+  };
+});
